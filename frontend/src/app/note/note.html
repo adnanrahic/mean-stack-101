@@ -1,0 +1,34 @@
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Add a new note:</h2>
+            
+            <hr>
+            
+            <label for="title">Title</label><br>
+            <input ng-model="vm.note.title" type="text" name="title"> 
+            <br>
+
+            <label for="description">Description</label><br>
+            <textarea ng-model="vm.note.description" name="description" cols="30" rows="10"></textarea>
+            <br>
+
+            <hr>
+
+            <button ng-click="vm.addNote()">Add Note</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Notes:</h2>
+            <div ng-repeat="note in vm.notes">
+                <h3>Note: {{$index+1}}</h3>
+                <h5>Title: {{note.title}}</h5>
+                <p>Description: {{note.description}}</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

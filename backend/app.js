@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var db = require('./db');
 
-var UserController = require('./user/NotesController');
-app.use('/notes', NotesController);
+var NoteController = require('./note/NoteController');
+app.use('/api/notes', NoteController);
 
 module.exports = app;
