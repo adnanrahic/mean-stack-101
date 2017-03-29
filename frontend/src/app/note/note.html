@@ -30,8 +30,18 @@
             <h2>Notes:</h2>
             <div ng-repeat="note in vm.notes">
                 <h3>Note: {{$index+1}}</h3>
-                <h5>Title: {{note.title}}</h5>
-                <p>Description: {{note.description}}</p>
+                <div ng-hide="vm.editable === $index">
+                    <h5>Title: {{note.title}}</h5>
+                    <p>Description: {{note.description}}</p>
+                </div>
+                <div ng-show="vm.editable === $index">
+                    <label for="title">Title</label>
+                    <input ng-model="note.title" type="text">
+                    <label for="description">Description</label>
+                    <textarea ng-model="note.description" name="description"cols="30" rows="10"></textarea>
+                </div>
+                <button ng-hide="vm.editable === $index" ng-click="vm.setEditable($index)">Edit</button>
+                <button ng-show="vm.editable === $index" ng-click="vm.editNote(note)">Save</button>
                 <button ng-click="vm.deleteNote(note._id)">Delete</button>
                 <hr>
             </div>

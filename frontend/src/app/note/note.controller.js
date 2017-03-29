@@ -10,8 +10,11 @@
 		var vm = this;
 		vm.notes = [];
 		vm.note = {};
+		vm.editable = false;
+		vm.setEditable = setEditable;
 		vm.addNote = addNote;
 		vm.deleteNote = deleteNote;
+		vm.editNote = editNote;
 
 		activate();
 
@@ -62,6 +65,30 @@
 				})
 				.catch(function (err) {
 					console.error("addNote errored with: ", err);
+				});
+		}
+		function setEditable(index) {
+			vm.editable = index;
+
+			console.debug(vm.editable);
+		}
+		function editNote(note) {
+			return $http.put('/api/notes/' + note._id,
+					$httpParamSerializer({ title: note.title, description: note.description }), {
+					headers: { "Content-Type": "application/x-www-form-urlencoded" }
+				})
+				.then(function (response) {
+					console.debug("editNote returned: ", response.data);
+					var editedNote = response.data;
+					vm.notes.forEach(function (note) {
+						if (note._id === editedNote._id) 
+							note = editedNote;
+					});
+					vm.editable = false;
+					return editedNote;
+				})
+				.catch(function (err) {
+					console.error("editNote errored with: ", err);
 				});
 		}
 

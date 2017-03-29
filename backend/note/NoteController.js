@@ -46,7 +46,7 @@ router.delete('/:id', function (req, res) {
 // UPDATES A SINGLE NOTE IN THE DATABASE
 router.put('/:id', function (req, res) {
     Note.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, note) {
-        if (err) return res.status(500).send("There was a problem updating the note.");
+        if (err) return res.status(500).send(err);
         res.status(200).send(note);
     });
 });
