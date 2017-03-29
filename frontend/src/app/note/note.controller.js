@@ -11,6 +11,7 @@
 		vm.notes = [];
 		vm.note = {};
 		vm.addNote = addNote;
+		vm.deleteNote = deleteNote;
 
 		activate();
 
@@ -44,6 +45,20 @@
 					vm.notes.push(addedNote);
 					vm.note = {};
 					return addedNote;
+				})
+				.catch(function (err) {
+					console.error("addNote errored with: ", err);
+				});
+		}
+		function deleteNote(id) {
+			return $http.delete('/api/notes/' + id)
+				.then(function (response) {
+					console.debug("deleteNote returned: ", response.data);
+					var deletedNote = response.data;
+					vm.notes = vm.notes.filter(function (note) {
+						return note._id !== deletedNote._id;
+					});
+					return deletedNote;
 				})
 				.catch(function (err) {
 					console.error("addNote errored with: ", err);

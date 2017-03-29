@@ -39,7 +39,7 @@ router.get('/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     Note.findByIdAndRemove(req.params.id, function (err, note) {
         if (err) return res.status(500).send("There was a problem deleting the note.");
-        res.status(200).send("Note "+ note.title +" was deleted.");
+        res.status(200).send(note);
     });
 });
 

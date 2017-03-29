@@ -9,6 +9,7 @@
             <label for="title">Title</label><br>
             <input ng-model="vm.note.title" type="text" name="title"> 
             <br>
+            <hr>
 
             <label for="description">Description</label><br>
             <textarea ng-model="vm.note.description" name="description" cols="30" rows="10"></textarea>
@@ -20,6 +21,10 @@
         </div>
     </div>
 
+
+    <hr>
+    <hr>
+
     <div class="row">
         <div class="col-xs-12">
             <h2>Notes:</h2>
@@ -27,6 +32,7 @@
                 <h3>Note: {{$index+1}}</h3>
                 <h5>Title: {{note.title}}</h5>
                 <p>Description: {{note.description}}</p>
+                <button ng-click="vm.deleteNote(note._id)">Delete</button>
                 <hr>
             </div>
         </div>
