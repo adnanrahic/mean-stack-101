@@ -36,7 +36,6 @@
 				});
 		}
 		function addNote() {
-			vm.note.pinned = false;
 			return $http.post('/api/notes', 
 					$httpParamSerializer(vm.note), {
 					headers: { "Content-Type": "application/x-www-form-urlencoded" }
